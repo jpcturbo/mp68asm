@@ -6,6 +6,10 @@ MPTune is an ECU calibration editor that uses a set of customized code bases and
 
 This extension does not completely support .lst, .mpt and .tpl files.
 
+## Example
+
+&nbsp;&nbsp;&nbsp;&nbsp;![ASM syntax highlighting example](asm_code_example.png "T-SMEC.asm example")
+
 ## Known Issues
 
 Branches (bmi, bpl, etc...) and bit operations (brset, brclr) still missing highlighting on labels and immediates.
