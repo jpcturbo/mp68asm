@@ -12,6 +12,7 @@
   ],
   "icon":"mp68asm.png",
   "activationEvents": [],
+  "repository": "github:jpcturbo/mp68asm.git",
   "main": "./extension.js",
   "contributes": {
     "languages": [
