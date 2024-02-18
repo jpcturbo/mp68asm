@@ -1,0 +1,45 @@
+{
+  "name": "mp68asm",
+  "displayName": "MP68Asm",
+  "description": "Syntax Highlighting for Turbonator Assembly",
+  "version": "0.0.1",
+  "publisher": "jpcturbo",
+  "engines": {
+    "vscode": "^1.86.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "icon":"mp68asm.png",
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "mp68-asm",
+        "aliases": [
+          "MP 68 Assembly (asm)"
+        ],
+        "extensions": [
+          ".asm",
+          ".tpl",
+          ".lst",
+          ".mpt"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "mp68-asm",
+        "scopeName": "source.mp68-asm",
+        "path": "./syntaxes/mp68-asm.tmLanguage.json"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  }
+}

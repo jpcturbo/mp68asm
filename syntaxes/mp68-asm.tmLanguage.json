@@ -1,0 +1,173 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "MP Turbonator Motorola 6800/68HC11 Assembly Language",
+    "patterns": [
+      {
+        "include": "#opcodes"
+      },
+      {
+        "include": "#assemble-list"
+      },
+      {
+        "include": "#comments"
+      },
+      {
+        "include": "#strings"
+      },
+      {
+        "include": "#directives"
+      },
+      {
+        "include": "#operands"
+      },
+      {
+        "include": "#strings-single"
+      }
+    ],
+    "repository": {
+      "opcodes": {
+        "patterns": [
+          {
+            "match": "\\b(?i)(asl|asr|lsr|rol|ror)([ab])?\\b",
+            "name": "keyword.control.opcode.shift.mp68-asm"
+          },
+          {
+            "match": "\\b(?i)((add|and|adc|bit|eor|lsl|ora|sbc|sub|cmp|lda|sta|psh|pul)[ab])\\b",
+            "name": "keyword.control.opcode.ab.mp68-asm"
+          },
+          {
+            "match": "\\b(?i)(addd|asld|cmpd|cpd|ldd|lsld|lsrd|subd|std|std)\\b",
+            "name": "keyword.control.opcode.d.mp68-asm"
+          },
+          {
+            "match": "\\b(?i)((clr|com|dec|inc|neg|tst)([ab])?)\\b",
+            "name": "keyword.control.opcode.abmem.mp68-asm"
+          },
+          {
+            "match": "\\b(?i)((b[ceghlmnprsv][aceilqrst])|(brclr|brset))\\b",
+            "name": "keyword.control.opcode.branch.mp68-asm"
+          },
+          {
+            "match": "\\b(?i)(aba|abx|aby|bclr|bset|cba|clc|cli|clv|cpx|cpxa|cpy|daa|des|dex|dey|fdiv|idiv|ins|inx|iny|jmp|jsr|lds|ldx|ldy|mul|nop|pshx|pshy|pulx|puly|rti|rts|sba|sec|sei|sev|sts|stx|sty|swi|tab|tap|tba|tpa|tsx|tsy|txs|wai|xgDX|xgDY)\\b",
+            "name": "keyword.control.opcode.misc.mp68-asm"
+          }
+        ]
+      },
+      "assemble-list": {
+        "patterns": [
+          {
+            "match": "^ {5}(([0-9a-f]{2} )*[0-9a-f]{2})",
+            "name": "constant.numeric.list-fcb2.mp68-asm"
+          },
+          {
+            "match": "^(?i)([0-9]* [0-9a-f]* ([0-9a-f]{2} )*)",
+            "name": "constant.numeric.list-assembly-code.mp68-asm"
+          },
+          {
+            "match": "\\b(?i)([0-9a-f]{4})\\b",
+            "name": "constant.numeric.list-xref.mp68-asm"
+          }
+        ]
+      },
+      "comments": {
+        "patterns": [
+          {
+            "match": "^\\*.*$",
+            "name": "comment.line.asterisk.mp68-asm"
+          },
+          {
+            "match": ";.*$",
+            "name": "comment.line.semicolon.mp68-asm"
+          },
+          {
+            "match": " {8}\\*.*$",
+            "name": "comment.line.asterisk.assembly-list.mp68-asm"
+          }
+        ]
+      },
+      "strings": {
+        "name": "string.quoted.double.mp68-asm",
+        "begin": "\"",
+        "end": "\"",
+        "patterns": [
+          {
+            "match": "\\\\.",
+            "name": "constant.character.escape.mp68-asm"
+          }
+        ]
+      },
+      "directives": {
+        "patterns": [
+          {
+            "match": "\\b(?i)(end|equ|opt|org|page)\\b",
+            "name": "keyword.control.directive.mp68-asm"
+          },
+          {
+            "match": "\\b(?i)(bsz|fcb|fcc|fdb|fill|rmb|zmb)\\b",
+            "name": "keyword.control.directive.data.mp68-asm"
+          },
+          {
+            "match": "\\b(&|%|\\^|\\*|\\/|\\-|\\+|\\|)",
+            "name": "keyword.function.operator.mp68-asm"
+          },
+          {
+            "match": "\\b(?i)[A-Za-z0-9_]+:",
+            "name": "entity.name.function.mp68-asm"
+          }
+        ]
+      },
+      "operands": {
+        "patterns": [
+          {
+            "match": "'.'",
+            "name": "string.quoted.single.singlechar.mp68-asm"
+          },
+          {
+            "match": "'.\\b",
+            "name": "string.quoted.single.onequote.mp68-asm"
+          },
+          {
+            "match": "%[01]+",
+            "name": "constant.numeric.binary.mp68-asm"
+          },
+          {
+            "match": "@[0-7]+",
+            "name": "constant.numeric.octal.mp68-asm"
+          },
+          {
+            "match": "\\b[0-9]+\\b",
+            "name": "constant.numeric.decimal.mp68-asm"
+          },
+          {
+            "match": "(\\$|\\b0x|0H)[A-Fa-f0-9]+\\b",
+            "name": "constant.numeric.hex.mp68-asm"
+          },
+          {
+            "match": "(?i)(,x)\\b",
+            "name": "keyword.operator.indexed.mp68-asm"
+          },
+          {
+            "match": "\\b[\\s\\t]+\\#",
+            "name": "keyword.operator.immediate.mp68-asm"
+          },
+          {
+            "match": "\\b[\\s\\t]+\\*",
+            "name": "keyword.operator.bitop.mp68-asm"
+          },
+          {
+            "match": "'(;|\\[|\\]|\\$|@|#|!| |%|\\+|\\^|\\&|\\*|\\(|\\)|\\{|\\}|\\\\|\\||\\\"|\\-|\\=|\\,|\\:|\\'|\\<|\\>|\\.|\\?|\\/|\\~|\\`)",
+            "name": "string.quoted.single.symbol.mp68-asm"
+          }
+        ]
+      },
+      "strings-single": {
+        "patterns": [
+          {
+            "match": "('[^']*')",
+            "name": "string.quoted.single.mp68-asm"
+          }
+        ]
+      }
+    },
+    "scopeName": "source.mp68-asm"
+  }
